@@ -1,0 +1,423 @@
+{
+	"info": {
+		"_postman_id": "6d3cfd81-e661-46c1-aed3-e7c71b96013b",
+		"name": "laravel-expense-tracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32425256"
+	},
+	"item": [
+		{
+			"name": "guest",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ali Hussein",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test123$$",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "Test123$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/register",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test123$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/login",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgot-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/forgot-password",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "c9CzKgTkhyMfzggf99XF",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test123$$",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "Test123$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/reset-password",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "verify-notification",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{api-url}}/email/verification-notification",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"email",
+								"verification-notification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify-email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "token",
+									"value": "R0WOXe3JJXwTQIazth88",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/verify-email",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"verify-email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{api-url}}/logout",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Ali Hussein1",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "alyredagomaa@gmail.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/profile",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update profile password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "current_password",
+									"value": "Test123$$",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test123$$",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "Test123$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/profile-password",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"profile-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete profile",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "password",
+									"value": "Test123$$",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api-url}}/profile",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "guest & auth",
+			"item": [
+				{
+					"name": "test",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "21|fLVIxKz0ARmbBSigmlOVVwaeabSGdUy3zJrtdSnr2e586a73",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "app-url",
+			"value": "laravel-expense-tracker.aly-h.com",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "api-url",
+			"value": "laravel-expense-tracker.aly-h.com/api",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "app-url",
+			"value": "http://127.0.0.1:8000/",
+			"type": "string"
+		},
+		{
+			"key": "api-url",
+			"value": "http://127.0.0.1:8000/api",
+			"type": "string"
+		}
+	]
+}
