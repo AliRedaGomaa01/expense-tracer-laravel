@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Http\JsonResponse;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Validator;
 
 class NewPasswordController extends Controller
 {
@@ -21,33 +21,52 @@ class NewPasswordController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'token' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        try {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'token' => ['required', 'string'],
+                    'email' => ['required', 'email', 'exists:users,email', 'lowercase'],
+                    'password' => ['required', 'confirmed', Rules\Password::defaults()],
+                ]
+            );
 
-        // Here we will attempt to reset the user's password. If it is successful we
-        // will update the password on an actual user model and persist it to the
-        // database. Otherwise we will parse the error and return the response.
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user) use ($request) {
-                $user->forceFill([
-                    'password' => Hash::make($request->string('password')),
-                    'remember_token' => Str::random(60),
-                ])->save();
-
-                event(new PasswordReset($user));
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'errors' => $validator->errors()
+                ], 422);
             }
-        );
 
-        if ($status != Password::PASSWORD_RESET) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
+            $validated = $validator->validated();
+
+            $user = User::where('email', $validated['email'])->first();
+
+            $user->password = Hash::make($validated['password']);
+            $user->save();
+
+            $token = Cache::get("user_{$validated['email']}_password_reset_token");
+
+            if ($token != $validated['token']) {
+                return response()->json([
+                    'status' => 'error',
+                    'errors' => [
+                        'token' => 'The provided token is invalid.'
+                    ]
+                ]);
+            }
+
+            Cache::forget("user_{$validated['email']}_password_reset_token");
+
+            event(new PasswordReset($user));
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'password was reset successfully'
             ]);
-        }
 
-        return response()->json(['status' => __($status)]);
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
     }
 }

@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Mail;
 
 class EmailVerificationNotificationController extends Controller
 {
@@ -15,11 +18,21 @@ class EmailVerificationNotificationController extends Controller
     public function store(Request $request): JsonResponse|RedirectResponse
     {
         if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended('/dashboard');
+            return response()->json([
+                'status' => 'error',
+                'message' => 'already-verified'
+            ]);
         }
 
-        $request->user()->sendEmailVerificationNotification();
+        $token = Str::random(20);
 
-        return response()->json(['status' => 'verification-link-sent']);
+        Cache::put("user_{$request->user()->id}_email_verification_token", $token, now()->addMinutes(60));
+
+        Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token));
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'verification-link-sent'
+        ]);
     }
 }

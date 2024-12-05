@@ -2,30 +2,68 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Verified;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
 
 class VerifyEmailController extends Controller
 {
     /**
      * Mark the authenticated user's email address as verified.
      */
-    public function __invoke(EmailVerificationRequest $request): RedirectResponse
+    public function __invoke(Request $request)      
     {
-        if ($request->user()->hasVerifiedEmail()) {
-            return redirect()->intended(
-                config('app.frontend_url').'/dashboard?verified=1'
+        try {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'token' => ['required', 'string'],
+                ]
             );
-        }
 
-        if ($request->user()->markEmailAsVerified()) {
-            event(new Verified($request->user()));
-        }
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
 
-        return redirect()->intended(
-            config('app.frontend_url').'/dashboard?verified=1'
-        );
+            $validated = $validator->validated();
+
+            $token = Cache::get("user_{$request->user()->id}_email_verification_token");
+
+            if ($token != $validated['token']) {
+                return response()->json([
+                    'status' => 'error',
+                    'errors' => [
+                        'token' => 'The provided token is invalid.'
+                    ]
+                ]);
+            }
+
+            if ($request->user()->hasVerifiedEmail()) {
+                Cache::forget("user_{$request->user()->id}_email_verification_token");
+                return response()->json([
+                    'status' => 'error' ,
+                    'message' => 'already-verified' ,
+                ]);
+            }
+
+            if ($request->user()->markEmailAsVerified()) {
+                event(new Verified($request->user()));
+            }
+
+            if ($request->user()->hasVerifiedEmail()) {
+                Cache::forget("user_{$request->user()->id}_email_verification_token");
+                return response()->json([
+                    'status' => 'success',
+                    'message' => 'email verified successfully',
+            ]);
+            }
+        } catch (\Exception $e) {
+            return response()->json($e);
+        }
     }
 }

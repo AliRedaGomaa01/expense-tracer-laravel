@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 class PasswordResetLinkController extends Controller
 {
@@ -17,23 +19,37 @@ class PasswordResetLinkController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-        ]);
+        try {
+            $validator = Validator::make($request->all(), [
+                'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'exists:users,email'],
+            ]);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'errors' => $validator->errors()
+                ], 422);
+            }
 
-        if ($status != Password::RESET_LINK_SENT) {
-            throw ValidationException::withMessages([
-                'email' => [__($status)],
+            $validated = $validator->validated();
+
+            $token = Str::random(20);
+
+            Cache::put("user_{$validated['email']}_password_reset_token", $token, now()->addMinutes(60));
+
+            Mail::to($validated['email'])->send(new \App\Mail\ResetPasswordMail($token));
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'reset-link-sent'
+            ]);
+            
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
             ]);
         }
 
-        return response()->json(['status' => __($status)]);
     }
 }
