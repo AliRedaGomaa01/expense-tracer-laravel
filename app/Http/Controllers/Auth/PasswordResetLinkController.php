@@ -37,7 +37,7 @@ class PasswordResetLinkController extends Controller
 
             Cache::put("user_{$validated['email']}_password_reset_token", $token, now()->addMinutes(60));
 
-            Mail::to($validated['email'])->send(new \App\Mail\ResetPasswordMail($token));
+            Mail::to($validated['email'])->send(new \App\Mail\ResetPasswordMail($token , $validated['email']));
 
             return response()->json([
                 'status' => 'success',

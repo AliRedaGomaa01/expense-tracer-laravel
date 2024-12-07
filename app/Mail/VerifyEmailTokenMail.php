@@ -17,9 +17,9 @@ class VerifyEmailTokenMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct( public string $token = '##########' )
+    public function __construct( public string $token = '##########' , public string $email = 'emaxple@example.com' )
     {
-        $this->url = config('app.frontend_url') . '/' . 'verify-email/' . $token;
+        $this->url = config('app.frontend_url') . '/' . 'verify-email/' . $email . '/' . $token;
     }
 
     /**

@@ -18,9 +18,9 @@ class ResetPasswordMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct( public string $token = '##########' )
+    public function __construct( public string $token = '##########' , public string $email = 'emaxple@example.com' )
     {
-        $this->url = config('app.frontend_url') . '/' . 'reset-password/' . $token;
+        $this->url = config('app.frontend_url') . '/' . 'reset-password/' . $email . '/' . $token;
     }
 
     /**
