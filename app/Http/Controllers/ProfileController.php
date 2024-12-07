@@ -23,7 +23,7 @@ class ProfileController extends Controller
             return response()->json([
                 'status' => 'error',
                 'errors' => $validator->errors()
-            ], 422);
+            ]);
         }
 
         $request->user()->fill($validator->validated());
@@ -58,7 +58,7 @@ class ProfileController extends Controller
             return response()->json([
                 'status' => 'error',
                 'errors' => $validator->errors()
-            ], 422);
+            ]);
         }
 
         $user = $request->user();

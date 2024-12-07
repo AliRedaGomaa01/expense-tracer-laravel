@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
                 'errors' => [ 
                     'email' => ['The provided credentials are incorrect.'],
                 ]
-            ], 422);
+            ]);
         }
 
         $validated = $validator->validated();
@@ -55,7 +55,7 @@ class AuthenticatedSessionController extends Controller
                 'errors' => [
                     'email' => ['The provided credentials are incorrect.'],
                 ],
-            ], 422);
+            ]);
         } else {
             $user->tokens()->delete();
 

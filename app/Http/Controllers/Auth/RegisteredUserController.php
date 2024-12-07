@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
             return response()->json([
                 'status' => 'error',
                 'errors' => $validator->errors()
-            ], 422);
+            ]);
         }
 
         $validated = $validator->validated();
