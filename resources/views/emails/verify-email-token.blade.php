@@ -5,7 +5,7 @@
     <p style="font-size: 1rem; margin: 1rem 0;">Please click the link below to verify your email address:</p>
     <a href="{{ $url ?? '#' }}" style="font-size: 1rem; margin: 1rem 0; text-decoration: none; padding: 0.5rem 1rem; border-radius: 0.5rem; background-color: #000; color: #fff;">Verify my email address</a>
     <p style="font-size: 1rem; margin: 1rem 0;">If you did not request this verification, please ignore this email.</p>
-    <p style="font-size: 1rem; margin: 1rem 0;">If the link is not working please copy this token and paste it in the input field: <b style="color: blue; ">{{ $token ?? '################' }}</b></p>
+    <p style="font-size: 1rem; margin: 1rem 0;">If the link is not working please copy this url and paste it in your browser: <a href="{{ $url ?? '#' }}" target="_blank" style="color: blue; ">{{ $url ?? '########'  }}</a></p>
     <p style="font-size: 1rem; margin: 1rem 0;">Thank you!</p>
   </div>
 </div>
