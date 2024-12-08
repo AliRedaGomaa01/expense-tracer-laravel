@@ -33,15 +33,16 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+    
+            $token = Str::random(20);
+    
+            Cache::put("user_{$request->user()->id}_email_verification_token", $token, now()->addMinutes(60));
+    
+            Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token ));
         }
 
         $request->user()->save();
 
-        $token = Str::random(20);
-
-        Cache::put("user_{$request->user()->id}_email_verification_token", $token, now()->addMinutes(60));
-
-        Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token ));
 
         return response()->json([
             'status' => 'success',
