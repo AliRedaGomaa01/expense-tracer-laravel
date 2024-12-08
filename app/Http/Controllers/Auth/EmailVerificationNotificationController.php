@@ -28,7 +28,7 @@ class EmailVerificationNotificationController extends Controller
 
         Cache::put("user_{$request->user()->id}_email_verification_token", $token, now()->addMinutes(60));
 
-        Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token , $request->user()->email));
+        Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token ));
 
         return response()->json([
             'status' => 'success',

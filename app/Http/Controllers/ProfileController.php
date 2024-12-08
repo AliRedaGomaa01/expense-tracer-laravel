@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\JsonResponse;
 
 class ProfileController extends Controller
 {
@@ -33,6 +36,12 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        $token = Str::random(20);
+
+        Cache::put("user_{$request->user()->id}_email_verification_token", $token, now()->addMinutes(60));
+
+        Mail::to($request->user()->email)->send(new \App\Mail\VerifyEmailTokenMail($token ));
 
         return response()->json([
             'status' => 'success',
