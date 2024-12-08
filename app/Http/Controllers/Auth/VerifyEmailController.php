@@ -59,7 +59,9 @@ class VerifyEmailController extends Controller
                 Cache::forget("user_{$request->user()->id}_email_verification_token");
                 return response()->json([
                     'status' => 'success',
-                    'message' => 'email verified successfully',
+                    'data' => [
+                        'user' => $request->user()
+                    ]
             ]);
             }
         } catch (\Exception $e) {
