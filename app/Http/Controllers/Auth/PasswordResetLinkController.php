@@ -47,7 +47,7 @@ class PasswordResetLinkController extends Controller
         } catch (\Exception $e) {
             return response()->json([
                 'status' => 'error',
-                'message' => $e->getMessage()
+                'errors' => [ 'backend' => $e->getMessage()]
             ]);
         }
 

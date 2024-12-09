@@ -66,7 +66,12 @@ class NewPasswordController extends Controller
             ]);
 
         } catch (\Exception $e) {
-            return response()->json($e);
+
+            return response()->json([
+                'status' => 'error',
+                'errors' => [ 'backend' => $e->getMessage()]
+            ]);
+            
         }
     }
 }
