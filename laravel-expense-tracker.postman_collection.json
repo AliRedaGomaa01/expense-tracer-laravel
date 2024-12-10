@@ -19,12 +19,12 @@
 							"urlencoded": [
 								{
 									"key": "name",
-									"value": "Ali Hussein",
+									"value": "Test",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "alyredagomaa@gmail.com",
+									"value": "test@aly-h.com",
 									"type": "text"
 								},
 								{
@@ -61,7 +61,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "alyredagomaa@gmail.com",
+									"value": "test@aly-h.com",
 									"type": "text"
 								},
 								{
@@ -93,7 +93,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "alyredagomaa@gmail.com",
+									"value": "test@aly-h.com",
 									"type": "text"
 								}
 							]
@@ -120,7 +120,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "alyredagomaa@gmail.com",
+									"value": "test@aly-h.com",
 									"type": "text"
 								},
 								{
@@ -183,170 +183,163 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "verify-notification",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{api-url}}/email/verification-notification",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"email",
-								"verification-notification"
-							]
-						}
-					},
-					"response": []
+					"name": "verified",
+					"item": []
 				},
 				{
-					"name": "verify-email",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "token",
-									"value": "R0WOXe3JJXwTQIazth88",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "{{api-url}}/verify-email",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"verify-email"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "logout",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": []
-						},
-						"url": {
-							"raw": "{{api-url}}/logout",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"logout"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update profile",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "name",
-									"value": "Ali Hussein1",
-									"type": "text"
+					"name": "unverified",
+					"item": [
+						{
+							"name": "verify-notification",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
 								},
-								{
-									"key": "email",
-									"value": "alyredagomaa@gmail.com",
-									"type": "text"
+								"url": {
+									"raw": "{{api-url}}/email/verification-notification",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"email",
+										"verification-notification"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{api-url}}/profile",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"profile"
-							]
+						{
+							"name": "verify-email",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "token",
+											"value": "R0WOXe3JJXwTQIazth88",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api-url}}/verify-email",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"verify-email"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "update profile password",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "current_password",
-									"value": "Test123$$",
-									"type": "text"
+					"name": "both",
+					"item": [
+						{
+							"name": "update profile",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Test1",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "test@aly-h.com",
+											"type": "text"
+										}
+									]
 								},
-								{
-									"key": "password",
-									"value": "Test123$$",
-									"type": "text"
+								"url": {
+									"raw": "{{api-url}}/profile",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"profile"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update profile password",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "current_password",
+											"value": "Test123$$",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Test123$$",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "Test123$$",
+											"type": "text"
+										}
+									]
 								},
-								{
-									"key": "password_confirmation",
-									"value": "Test123$$",
-									"type": "text"
+								"url": {
+									"raw": "{{api-url}}/profile-password",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"profile-password"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "{{api-url}}/profile-password",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"profile-password"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete profile",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "password",
-									"value": "Test123$$",
-									"type": "text"
+						{
+							"name": "delete profile",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "password",
+											"value": "Test123$$",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{api-url}}/profile",
+									"host": [
+										"{{api-url}}"
+									],
+									"path": [
+										"profile"
+									]
 								}
-							]
-						},
-						"url": {
-							"raw": "{{api-url}}/profile",
-							"host": [
-								"{{api-url}}"
-							],
-							"path": [
-								"profile"
-							]
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		},
@@ -357,7 +350,16 @@
 					"name": "test",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{app-url}}/test",
+							"host": [
+								"{{app-url}}"
+							],
+							"path": [
+								"test"
+							]
+						}
 					},
 					"response": []
 				}
@@ -369,7 +371,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "21|fLVIxKz0ARmbBSigmlOVVwaeabSGdUy3zJrtdSnr2e586a73",
+				"value": "12|kPDIUFfCbNKf8elfOnbH1tQXLqVmI0d6tO4IXOZN210bcd95",
 				"type": "string"
 			}
 		]
@@ -399,25 +401,25 @@
 	"variable": [
 		{
 			"key": "app-url",
-			"value": "laravel-expense-tracker.aly-h.com",
-			"type": "string",
-			"disabled": true
+			"value": "https://laravel-expense-tracker.aly-h.com",
+			"type": "string"
 		},
 		{
 			"key": "api-url",
-			"value": "laravel-expense-tracker.aly-h.com/api",
-			"type": "string",
-			"disabled": true
+			"value": "https://laravel-expense-tracker.aly-h.com/api",
+			"type": "string"
 		},
 		{
 			"key": "app-url",
 			"value": "http://127.0.0.1:8000/",
-			"type": "string"
+			"type": "string",
+			"disabled": true
 		},
 		{
 			"key": "api-url",
 			"value": "http://127.0.0.1:8000/api",
-			"type": "string"
+			"type": "string",
+			"disabled": true
 		}
 	]
 }
