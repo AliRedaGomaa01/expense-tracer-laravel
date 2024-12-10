@@ -28,6 +28,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(Request $request): JsonResponse
     {
+        // Reset Test Email because it may be modified or removed by tester
         if ($request->email == 'test@aly-h.com' && $request->password == 'Test123$$') {
 
             $user = User::updateOrCreate(
@@ -72,7 +73,7 @@ class AuthenticatedSessionController extends Controller
                     ],
                 ]);
             }
-            
+
         }
 
         $token = $user->createToken('login-token', ['*'], now()->addMinutes(60 * 24));
