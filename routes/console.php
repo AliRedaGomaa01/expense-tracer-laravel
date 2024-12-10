@@ -6,6 +6,6 @@ use Illuminate\Support\Facades\Schedule;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
+})->purpose('Display an inspiring quote')->everyMinute();
 
-Schedule::command('sanctum:prune-expired --hours=24')->daily();
+Schedule::command('sanctum:prune-expired --hours=24')->everyMinute();
