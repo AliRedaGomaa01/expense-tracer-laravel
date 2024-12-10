@@ -57,8 +57,6 @@ class AuthenticatedSessionController extends Controller
                 ],
             ]);
         } else {
-            $user->tokens()->delete();
-
             $token = $user->createToken('login-token' , ['*'] , now()->addMinutes(60 * 24 ));
 
             return response()->json([
@@ -77,15 +75,15 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): JsonResponse
-    {
-        $user = User::find($request->user()->id);
+    // public function destroy(Request $request): JsonResponse
+    // {
+    //     $user = User::find($request->user()->id);
 
-        $user->tokens()->delete();
+    //     $user->tokens()->delete();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'tokens deleted successfully'
-        ]);
-    }
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'tokens deleted successfully'
+    //     ]);
+    // }
 }
