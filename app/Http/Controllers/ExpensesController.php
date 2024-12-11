@@ -32,7 +32,10 @@ class ExpensesController extends Controller
 
     $expenseData = $this->dateAndExpenseService->handleExpenseData($filters, $expensesSum, $categories);
 
-    return response()->json(compact('expenses', 'categories', 'expenseData', 'filters'));
+    return response()->json([
+      'status' => 'success',
+      compact('expenses', 'categories', 'expenseData', 'filters')
+    ]);
   }
 
   /**
