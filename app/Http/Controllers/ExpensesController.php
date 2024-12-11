@@ -62,6 +62,8 @@ class ExpensesController extends Controller
       }
 
       $date->update(['expenses_sum' => $date->expenses->sum('price')]);
+
+      $date->load('expenses');
     });
 
     return response()->json([
