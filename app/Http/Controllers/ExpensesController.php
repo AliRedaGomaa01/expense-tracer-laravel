@@ -27,6 +27,8 @@ class ExpensesController extends Controller
       ->orderBy('date_id', 'desc')
       ->paginate(20);
 
+    $expenses->setPath(config('app.frontend_url') . '/expenses');
+
     $expensesSum = Expenses::filters($filters)
       ->sum('price');
 
