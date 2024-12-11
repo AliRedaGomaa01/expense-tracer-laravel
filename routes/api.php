@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DateController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\Auth\PasswordController;
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
@@ -15,7 +17,12 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Route::group(['middleware' => ['auth:sanctum' , 'verified']], function () {
-// });
+Route::group(['middleware' => ['auth:sanctum' , 'verified']], function () {
+  Route::delete('expenses/delete-all', [ExpensesController::class , 'deleteAll'])->name('expenses.delete-all');
+  Route::post('expenses/seed', [ExpensesController::class , 'seed'])->name('expenses.seed');
+  Route::resource('expenses', ExpensesController::class)->only('index' , 'create', 'store', 'update' , 'destroy');
+  
+  Route::resource('date', DateController::class)->only('index', 'show');
+});
 
 require __DIR__.'/auth.php';
