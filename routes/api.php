@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth:sanctum' , 'verified']], function () {
   Route::post('expenses/seed', [ExpensesController::class , 'seed'])->name('expenses.seed');
   Route::resource('expenses', ExpensesController::class)->only('index' , 'create', 'store', 'update' , 'destroy');
   
-  Route::resource('date', DateController::class)->only('index', 'show');
+  Route::resource('date', DateController::class)->only('index', 'show' , 'destroy');
 });
 
 require __DIR__.'/auth.php';
