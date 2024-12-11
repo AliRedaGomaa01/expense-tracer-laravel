@@ -25,8 +25,6 @@ class DateController extends Controller
       ->orderBy('date', 'desc')
       ->paginate(20);
 
-    $dates->setPath(config('app.frontend_url') . '/dates');
-
     $expensesSum = $request->user()->dates()->filters($filters)
       ->with([
         'expenses' => fn($query) => $query->filters($filters)
