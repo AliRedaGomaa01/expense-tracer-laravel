@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
                 ],
                 [
                     'name' => 'Test',
-                    'verified_at' => now(),
+                    'email_verified_at' => now(),
                     'password' => Hash::make('Test123$$'),
                 ]
             );
