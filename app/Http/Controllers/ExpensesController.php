@@ -53,9 +53,17 @@ class ExpensesController extends Controller
    */
   public function store(Request $request)
   {
+    $categoryIds = implode(',', (collect(CategoryEnum::toArray())->pluck('id')->toArray()));
+
     $validator = Validator::make(
       $request->all(),
-      (new ExpenseRequest())->rules()
+      [
+        'date' => ['required', 'date'],
+        'expenses' => ['required', 'array', 'min:1'],
+        'expenses.*.price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+        'expenses.*.name' => ['required', 'string', 'max:255'],
+        'expenses.*.category_id' => ['required', 'numeric', "in:$categoryIds"],
+      ]
     );
 
     if ($validator->fails()) {
@@ -106,9 +114,15 @@ class ExpensesController extends Controller
    */
   public function update(Request $request, Expenses $expense)
   {
+    $categoryIds = implode(',', (collect(CategoryEnum::toArray())->pluck('id')->toArray()));
+
     $validator = Validator::make(
       $request->all(),
-      (new ExpenseRequest())->rules()
+      [
+        'price' => ['required', 'regex:/^\d+(\.\d{1,2})?$/'],
+        'name' => ['required', 'string', 'max:255'],
+        'category_id' => ['required', 'numeric', "in:$categoryIds"],
+      ]
     );
 
     if ($validator->fails()) {
