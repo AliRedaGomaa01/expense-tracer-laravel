@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ExpenseRequest;
 use App\Services\DateAndExpenseService;
+use Illuminate\Support\Facades\Validator;
 
 class ExpensesController extends Controller
 {
@@ -52,7 +53,19 @@ class ExpensesController extends Controller
    */
   public function store(ExpenseRequest $request)
   {
-    $validated = $request->validated();
+    $validator = Validator::make(
+      $request->all(),
+      $request->rules()
+    );
+
+    if ($validator->fails()) {
+      return response()->json([
+        'status' => 'error',
+        'errors' => $validator->errors()
+      ]);
+    }
+
+    $validated = $validator->validated();
 
     DB::transaction(function () use (&$date, $validated) {
       $date = request()->user()->dates()->firstOrCreate(collect($validated)->only('date')->toArray());
@@ -93,7 +106,19 @@ class ExpensesController extends Controller
    */
   public function update(ExpenseRequest $request, Expenses $expense)
   {
-    $validated = $request->validated();
+    $validator = Validator::make(
+      $request->all(),
+      $request->rules()
+    );
+
+    if ($validator->fails()) {
+      return response()->json([
+        'status' => 'error',
+        'errors' => $validator->errors()
+      ]);
+    }
+
+    $validated = $validator->validated();
 
     $expense->update($validated);
 
