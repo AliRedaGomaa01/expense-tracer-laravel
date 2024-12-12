@@ -113,7 +113,11 @@ class ExpensesController extends Controller
 
     $expense->delete();
 
-    $date->update(['expenses_sum' => $date->expenses->sum('price')]);
+    if ($date->expenses->isEmpty()) {
+      $date->delete();
+    } else {
+      $date->update(['expenses_sum' => $date->expenses->sum('price')]);
+    }
 
     return response()->json(['status' => 'success']);
   }
