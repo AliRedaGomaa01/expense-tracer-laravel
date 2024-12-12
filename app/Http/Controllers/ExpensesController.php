@@ -51,11 +51,11 @@ class ExpensesController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(ExpenseRequest $request)
+  public function store(Request $request)
   {
     $validator = Validator::make(
       $request->all(),
-      $request->rules()
+      (new ExpenseRequest())->rules()
     );
 
     if ($validator->fails()) {
@@ -104,11 +104,11 @@ class ExpensesController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(ExpenseRequest $request, Expenses $expense)
+  public function update(Request $request, Expenses $expense)
   {
     $validator = Validator::make(
       $request->all(),
-      $request->rules()
+      (new ExpenseRequest())->rules()
     );
 
     if ($validator->fails()) {
