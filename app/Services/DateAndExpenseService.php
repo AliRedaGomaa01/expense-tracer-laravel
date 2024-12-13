@@ -37,7 +37,7 @@ Class DateAndExpenseService {
             'sum' => $expensesSum,
             'startDate' =>  $expensesDates->min('date'),
             'endDate' =>  $expensesDates->max('date'),
-            'category' => collect($categories)->where('id', $filters['category_id'])->first()['name'] ?? 'جميع التصنيفات',
+            'category' => collect($categories)->where('id', $filters['category_id'])->first()['name'] ?? 'all categories',
         ];
 
         // Assume these are your two dates
