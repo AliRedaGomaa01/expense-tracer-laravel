@@ -184,7 +184,197 @@
 			"item": [
 				{
 					"name": "verified",
-					"item": []
+					"item": [
+						{
+							"name": "expenses",
+							"item": [
+								{
+									"name": "store",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"date\":\"2022-10-25\",\r\n    \"expenses\" : [\r\n        {\r\n            \"price\": 21.20,\r\n            \"name\": \"1kg apple\",\r\n            \"category_id\": 1\r\n        },\r\n        {\r\n            \"price\": 15.30,\r\n            \"name\": \"1kg orange\",\r\n            \"category_id\": 1\r\n        }\r\n    ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{api-url}}/expenses",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"expenses"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "price",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "apple 2 ",
+													"type": "text"
+												},
+												{
+													"key": "category_id",
+													"value": "2",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{api-url}}/expenses/:id",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"expenses",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": "190"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{api-url}}/expenses/:id",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"expenses",
+												":id"
+											],
+											"variable": [
+												{
+													"key": "id",
+													"value": ""
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "seed",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"url": {
+											"raw": "{{api-url}}/expenses/seed",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"expenses",
+												"seed"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete-all",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{api-url}}/expenses/delete-all",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"expenses",
+												"delete-all"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "date",
+							"item": [
+								{
+									"name": "index",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "urlencoded",
+											"urlencoded": [
+												{
+													"key": "start_date",
+													"value": "",
+													"description": "ex : 2001-01-21  ( nullable ) ",
+													"type": "text"
+												},
+												{
+													"key": "end_date",
+													"value": "",
+													"description": "ex : 2001-10-23  ( nullable )",
+													"type": "text"
+												},
+												{
+													"key": "category_id",
+													"value": "",
+													"description": "1 , 2 , or 3  ( nullable )",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "",
+													"description": "apple  ( nullable )",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{api-url}}/date",
+											"host": [
+												"{{api-url}}"
+											],
+											"path": [
+												"date"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
 				},
 				{
 					"name": "unverified",
@@ -371,7 +561,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "12|kPDIUFfCbNKf8elfOnbH1tQXLqVmI0d6tO4IXOZN210bcd95",
+				"value": "39|5rw58vEkMVkd6RBQNhNF32aFWZ9Rf1C6TnTWHniac11be9dc",
 				"type": "string"
 			}
 		]
