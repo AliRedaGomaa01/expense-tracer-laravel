@@ -66,7 +66,8 @@
         <div class="container">
             <h1>This is a RESTful API Laravel project for an expense tracker web & mobile application.</h1>
             <p>To test this app, you can find a Postman collection for API endpoints attached with the project repo on GitHub.</p>
-            <p>You can find the project's GitHub repo from this website: <a href="https://aly-h.com" target="_blank">https://aly-h.com</a></p>
+            <p>You can find the project's GitHub repo using the next link: <a href="https://github.com/AliRedaGomaa01/expense-tracer-laravel" target="_blank">https://github.com/AliRedaGomaa01/expense-tracer-laravel</a></p>
+            <p>The name of collection file is <strong>"laravel-expense-tracker.postman_collection.json"</strong>  </p>
         </div>
     </div>
 </body>
