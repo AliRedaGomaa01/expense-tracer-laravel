@@ -552,6 +552,23 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "mobile-app-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api-url}}/mobile-app-version",
+							"host": [
+								"{{api-url}}"
+							],
+							"path": [
+								"mobile-app-version"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -561,7 +578,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "39|5rw58vEkMVkd6RBQNhNF32aFWZ9Rf1C6TnTWHniac11be9dc",
+				"value": "75|ub3FG7c49leEUHO0WupNWSgSxRj56R6AhSVByWa8eb03c8d3",
 				"type": "string"
 			}
 		]
