@@ -64,10 +64,34 @@
 <body>
     <div class="overlay">
         <div class="container">
-            <h1>This is a RESTful API Laravel project for an expense tracker web & mobile application.</h1>
-            <p>To test this app, you can find a Postman collection for API endpoints attached with the project repo on GitHub.</p>
-            <p>You can find the project's GitHub repo using the next link: <a href="https://github.com/AliRedaGomaa01/expense-tracer-laravel" target="_blank">https://github.com/AliRedaGomaa01/expense-tracer-laravel</a></p>
-            <p>The name of collection file is <strong>"laravel-expense-tracker.postman_collection.json"</strong>  </p>
+            <h1>This is a (Laravel -- React -- Flutter) project for an expense tracker web & mobile application.</h1>
+            <ol style="text-align: start; line-height: 2rem;">
+              <li>
+                <p>To test the RESTful backend app</p>
+                <ul>
+                  <li>To test the RESTful backend app, you can find a Postman collection for API endpoints attached with the project repo on GitHub.</li>
+                  <li>You can find the project's GitHub repo using the next link: <a href="https://github.com/AliRedaGomaa01/expense-tracer-laravel" target="_blank">https://github.com/AliRedaGomaa01/expense-tracer-laravel</a></li>
+                  <li>The name of collection file is <strong>"laravel-expense-tracker.postman_collection.json"</strong>  </li>
+                </ul>
+              </li>
+              <li>
+                To test the frontend react web app please visit this link:  <a href="https://react-expense-tracker.aly-h.com">https://react-expense-tracker.aly-h.com</a>
+              </li>
+              <li>
+                <p>To see the flutter mobile app please follow the next step :  
+                  <ul>
+                    <li>Download the zipped app.apk from this link on google drive : <a href="https://drive.google.com/drive/u/0/folders/1G4_Sbm-tqvm6C6BfWWsZQBZOz5MtUpBf">
+                      https://drive.google.com/drive/u/0/folders/1G4_Sbm-tqvm6C6BfWWsZQBZOz5MtUpBf
+                      </a> 
+                    </li>
+                    <li> Extract the zipped file on your mobile</li>
+                    <li> Install the app using the app.apk file </li>
+                  </ul>
+                </p>
+                </p>
+              </li>
+
+            </ol>
         </div>
     </div>
 </body>
