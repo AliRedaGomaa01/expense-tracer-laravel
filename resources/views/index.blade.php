@@ -99,7 +99,7 @@
         <li>
           <p>To test the RESTful backend app</p>
           <ul>
-            <li>To test the RESTful backend app, you can find a Postman collection for API endpoints attached with the
+            <li> you can find a Postman collection for API endpoints attached with the
               project repo on GitHub.</li>
             <li>You can find the project's GitHub repo using the next link: <a
                 href="https://github.com/AliRedaGomaa01/expense-tracer-laravel"
