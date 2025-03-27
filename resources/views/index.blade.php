@@ -94,27 +94,44 @@
   <div class="overlay"></div>
   <div class="wrapper">
     <div class="container">
-      <h1>This is a ( Laravel - React - Flutter ) project for an expense tracker web & mobile application.</h1>
+      <h2>
+        This is a ( Laravel - React - Flutter ) project for an expense tracker web & mobile application.
+      </h2>
       <ol>
         <li>
-          <p>To test the RESTful backend app</p>
+          <p>
+            To test the RESTful backend app
+          </p>
           <ul>
-            <li> you can find a Postman collection for API endpoints attached with the
-              project repo on GitHub.</li>
+            <li>
+              you can find a Postman collection for API endpoints attached with the
+              project repo on GitHub.
+            </li>
             <li>You can find the project's GitHub repo using the next link: <a
                 href="https://github.com/AliRedaGomaa01/expense-tracer-laravel"
-                target="_blank">laravel repo on github </a></li>
-            <li>The name of collection file is <strong>"laravel-expense-tracker.postman _collection.json"</strong> </li>
+                target="_blank">laravel repo on github </a>
+            </li>
+            <li>
+              The name of collection file is <strong>"laravel-expense-tracker.postman _collection.json"</strong> 
+            </li>
           </ul>
         </li>
         <hr>
         <li>
-          To test the frontend react web app please visit this link: <a
-            href="https://react-expense-tracker.aly-h.com">react website</a>
+          <p>
+            To test the frontend react web app please visit this link: 
+          </p>
+          <ul>
+            <li>
+              <a href="https://react-expense-tracker.aly-h.com">react website</a>
+            </li>
+          </ul>
         </li>
         <hr>
         <li>
-          <p>To see the flutter mobile app please follow the next step :
+          <p>
+            To see the flutter mobile app please follow the next step : 
+          </p>
           <ul>
             <li>Download the zipped app.apk from this link on google drive : <a
                 href="https://drive.google.com/drive/u/0/folders/1G4_Sbm-tqvm6C6BfWWsZQBZOz5MtUpBf">
@@ -124,7 +141,6 @@
             <li> Extract the zipped file on your mobile</li>
             <li> Install the app using the app.apk file </li>
           </ul>
-          </p>
           </p>
         </li>
       </ol>
